@@ -1,11 +1,3 @@
-body {
-    background-color: lightgray;
-}
-
-.header {
-  text-align: center;
-}
-
 .rode-balk::before {
     content: "";
     background-color: red;
@@ -19,9 +11,18 @@ body {
     z-index: -9999;
 }
 
+body {
+    background-color: lightgray;
+}
+
+.header {
+  text-align: center;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: auto auto auto auto;
+    justify-content: center;
     padding: 10px;
 }
 
@@ -31,8 +32,21 @@ body {
     text-align: center;
 }
 
+.personlist {
+    border: 5px solid black;
+    background-color: rgb(206, 106, 106);
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    width: 250px;
+}
+
 .p {
-    font-size: large;
-    position: fixed;
-    margin-top: 250px;
+    font-size: medium;
+}
+
+.image {
+    width: 200px;
+    height: 200px;
 }
