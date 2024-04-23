@@ -1,0 +1,32 @@
+body {
+    background-color: lightgray;
+}
+
+.header {
+  text-align: center;
+}
+
+.rode-balk::before {
+    content: "";
+    background-color: red;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw; /* Volledige breedte van het scherm */
+    height: 350px; /* Hoogte van de diagonale balk */
+    transform-origin: bottom left;
+    transform: skewY(-6deg); /* Draai de balk 10 graden schuin naar beneden */
+    z-index: -9999;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    padding: 10px;
+}
+
+.grid-item {
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+}
