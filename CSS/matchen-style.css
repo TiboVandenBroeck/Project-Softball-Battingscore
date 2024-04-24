@@ -1,0 +1,44 @@
+.rode-balk::before {
+    content: "";
+    background-color: red;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 350px;
+    transform-origin: bottom left;
+    transform: skewY(-6deg);
+    z-index: -9999;
+}
+
+body {
+    background-color: lightgray;
+}
+
+.header {
+  text-align: center;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(18, auto);
+    border-collapse: collapse;
+}
+
+#grid th,
+#grid td {
+    border: 2px solid rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    text-align: center;
+    background-color: white !important;
+}
+
+.p {
+    font-size: large;
+    padding: 10px;
+    
+}
+
+#table {
+    margin-left: -5px;
+}

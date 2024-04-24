@@ -16,7 +16,18 @@
         }
 
         if(isset($_POST['seizoenpag'])){
-            header("Location: seizoen.php");
+            $selectedOption = $_POST['seizoen'];
+            switch ($selectedOption) {
+                case '2021-2022':
+                    header("Location: seizoen 21-22.php");
+                    break;
+                case '2022-2023':
+                    header("Location: seizoen 22-23.php");
+                    break;
+                case '2023-2024':
+                    header("Location: seizoen 23-24.php");
+                    break;
+            }
             exit;
         }
 
@@ -40,9 +51,9 @@
             <div class="grid-item">
 
                 <select name="seizoen" id="seizoen">
-                    <option value="volvo">2021-2022</option>
-                    <option value="volvo">2022-2023</option>
-                    <option value="saab">2023-2024</option>
+                    <option value="2021-2022">2021-2022</option>
+                    <option value="2022-2023">2022-2023</option>
+                    <option value="2023-2024">2023-2024</option>
                 </select>
 
                 <button type="submit" name="seizoenpag">Seizoen</button>
