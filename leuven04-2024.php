@@ -45,12 +45,15 @@
             <th>SLG</th>
             <th>OPS</th>
         </tr>
-        
 
         <?php
+
             $result = mysqli_query($link, "SELECT * FROM `leuven04-2024`");
             while ($record = mysqli_fetch_array($result)) {
                 echo "<tr>";
+                $speler_pagina = "Speler pagina's/" . strtolower(str_replace(' ', '_', $record["Speler"])) . ".php";
+                echo "<td> <a href=\"" . $speler_pagina . "\">" . $record["Speler"] . "</a> </td>";
+
                 echo "<td>" . $record["AB"] . "</td>";
                 echo "<td>" . $record["K"] . "</td>";
                 echo "<td>" . $record["BB"] . "</td>";
@@ -70,73 +73,8 @@
                 echo "<td>" . $record["OPS"] . "</td>";
                 echo "</tr>";
             }
-        ?>
 
-        <tr>
-            <td>
-                <button type="submit" name="Eline Vanneste">Eline Vanneste</button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button type="submit" name="Elise Hautekeur">Elise Hautekeur</button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button type="submit" name="Julie Kerckhof">Julie Kerckhof</button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button type="submit" name="Josephine Berten">Josephine Berten</button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button type="submit" name="Kaily Blanckaert">Kaily Blanckaert</button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button type="submit" name="Marie Parret">Marie Parret</button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button type="submit" name="Adhemar Couwet">Adhemar Couwet</button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button type="submit" name="Chiel Callens">Chiel Callens</button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button type="submit" name="Dieter Decorte">Dieter Decorte</button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button type="submit" name="Emiel Kerckhof">Emiel Kerckhof</button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button type="submit" name="Luka Decorte">Luka Decorte</button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button type="submit" name="Ruben Ravestyn">Ruben Ravestyn</button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button type="submit" name="Tibo Vanden Broeck">Tibo Vanden Broeck</button>
-            </td>
-        </tr>
+        ?>
 
     </table>
 
