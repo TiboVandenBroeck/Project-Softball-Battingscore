@@ -13,13 +13,13 @@
         $link = mysqli_connect("localhost", "root", "", "project softball-battingscore") or die("Verbinding mislukt: ".mysqli_connect_error());
     ?>
 
-    <h1 class="header">leuven04-2024</h1>
+    <h1 class="header">borgerhoutsquirels04-2024</h1>
     
     <table id="table">
         <tr>
-            <th class="p">Frontliners 2 Uit VS Leuven</th>
-            <th class="p">Score: 30-16 en 19-17</th>
-            <th class="p">Datum: 20/04/2024</th>
+            <th class="p">Frontliners 2 Thuis VS Borgerhout Squirels</th>
+            <th class="p">Score: 9-3 en 3-5</th>
+            <th class="p">Datum: 1/04/2024</th>
         </tr>
     </table>
 
@@ -48,7 +48,7 @@
 
         <?php
 
-            $result = mysqli_query($link, "SELECT * FROM `leuven04-2024` ORDER BY `Speler`");
+            $result = mysqli_query($link, "SELECT * FROM `borgerhoutsquirels04-2024` ORDER BY `Speler`");
             while ($record = mysqli_fetch_array($result)) {
                 echo "<tr>";
                 $speler_pagina = "Speler pagina's/" . strtolower(str_replace(' ', '_', $record["Speler"])) . ".php";
