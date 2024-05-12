@@ -33,7 +33,7 @@ body {
 }
 
 .personlist {
-    border: 5px solid black;
+    border: 5px solid rgb(0, 0, 0);
     background-color: rgb(206, 106, 106);
     margin: 10px;
     padding: 10px;
@@ -48,5 +48,5 @@ body {
 
 .image {
     width: 200px;
-    height: 200px;
+    height: 300px;
 }

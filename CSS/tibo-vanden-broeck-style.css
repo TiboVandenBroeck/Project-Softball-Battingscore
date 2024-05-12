@@ -1,0 +1,77 @@
+body {
+    background-color: lightgray;
+}
+
+.header {
+  text-align: center;
+}
+
+.rode-balk::before {
+    content: "";
+    background-color: red;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 350px;
+    transform-origin: bottom left;
+    transform: skewY(-6deg);
+    z-index: -9999;
+}
+
+.personlist {
+    border: 5px solid rgb(0, 0, 0);
+    background-color: rgb(206, 106, 106);
+    margin: 10px;
+    margin-top: 20px;
+    margin-left: 30px;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    width: 375px;
+}
+
+.image {
+    width: 300px;
+    height: 450px;
+}
+
+
+.chart-container {
+    width: 900px;   
+    margin-top: 20px;
+}
+
+.container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.grid-container {
+    display: grid;
+    margin-left: 25px;
+    grid-template-columns: repeat(3, 1fr); /* 3 kolommen */
+    grid-template-rows: repeat(4, auto); /* 4 rijen */
+    gap: 2px; /* Ruimte tussen de blokken */
+  }
+
+.grid-item {
+    padding: 5px;
+    font-size: large;
+}
+.custom-button {
+    background-color: transparent;
+    border: none;
+    color: #007bff;
+    padding: 0;
+    text-align: left;
+    text-decoration: underline;
+    display: inline;
+    font-size: 16px;
+    margin: 0;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  .custom-button:hover {
+    color: #0056b3;
+  }

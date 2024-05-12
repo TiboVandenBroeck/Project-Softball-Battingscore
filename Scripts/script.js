@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
+/*document.addEventListener('DOMContentLoaded', function() {
     let text = document.lastModified;
     document.getElementById("updatedtime").innerHTML = text;
-});
+});*/
 //NOG EEN SEARCHBAR TOEVOEGEN
 /*var gridContainer = document.getElementById('grid-container');
         var gridItems = Array.from(gridContainer.getElementsByClassName('grid-item'));
