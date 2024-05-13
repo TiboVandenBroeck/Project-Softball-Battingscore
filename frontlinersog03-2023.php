@@ -1,7 +1,7 @@
 <?php
         $link = mysqli_connect("localhost", "root", "", "project softball-battingscore") or die("Verbinding mislukt: ".mysqli_connect_error());
 
-        session_start();n
+        session_start();
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
