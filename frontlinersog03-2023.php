@@ -1,39 +1,4 @@
 <?php
-        $link = mysqli_connect("localhost", "root", "", "project softball-battingscore") or die("Verbinding mislukt: ".mysqli_connect_error());
-
-        session_start();
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-            if(isset($_POST["Postcomment"]) && !empty($_POST["auteur"]) && !empty($_POST["comment"])) {
-
-                $link = mysqli_connect("localhost", "gebruikersnaam", "wachtwoord", "database");
-        
-                if (!$link) {
-                    die("Verbinding mislukt: " . mysqli_connect_error());
-                }
-                //beveiliging tegen Code Injection
-                $auteur = mysqli_real_escape_string($link, $_POST["auteur"]);
-                $bericht = mysqli_real_escape_string($link, $_POST["comment"]);
-        
-                $query = "INSERT INTO `comments` (Auteur, Bericht) VALUES ('$auteur', '$bericht')";
-                if (mysqli_query($link, $query)) {
-                    header("Location: ".$_SERVER['PHP_SELF']);
-                    exit();
-                } else {
-                    echo "Fout bij het toevoegen van de opmerking: " . mysqli_error($link);
-                }
-            }
-        }
-        
-        $result = mysqli_query($link, "SELECT * FROM `comments`");
-        
-        if (!$result) {
-            die("Query mislukt: " . mysqli_error($link));
-        }
-        
-        $num_rows = mysqli_num_rows($result);
-
         if(isset($_POST['home'])){
             header("Location: start.php");
             exit;
@@ -66,8 +31,7 @@
             header("Location: logout.php");
             exit;
         }
-    ?>
-
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -139,6 +103,9 @@
         </tr>
 
         <?php
+            $link = mysqli_connect("localhost", "root", "", "project softball-battingscore") or die("Verbinding mislukt: ".mysqli_connect_error());
+
+            session_start();
 
             $result = mysqli_query($link, "SELECT * FROM `frontlinersog03-2023` ORDER BY `Speler`");
             while ($record = mysqli_fetch_array($result)) {
@@ -173,39 +140,54 @@
 
     <br></br>
 
-    <form action="" method="post">
-        <label class="commentlbl" for="name">Auteur:</label><br>
-        <input type="text" id="name" name="auteur"><br>
-        <label class="commentlbl" for="comment">Opmerking:</label><br>
-        <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br>
-        <input class="commentbtn" type="submit" name="Postcomment" value="Plaats opmerking">
-    </form>
-
-    <?php
-        $comments_result = mysqli_query($link, "SELECT * FROM `comments`");
-
-        if (!$comments_result) {
-            die("Query mislukt: " . mysqli_error($link));
-        }
-    ?>
-
-    <p class="commentp">Geplaatste opmerkingen:</p>
-    <table class="commenttable">
-        <tr>
-            <th style="padding: 10px;">Auteur</th>
-            <th style="padding: 10px;">Opmerking</th>
-        </tr>
         <?php
-            //toont de opmerkingen
-            while ($comment = mysqli_fetch_assoc($comments_result)) {
-                echo "<tr>";
-                echo "<td style='padding: 10px;'>" . htmlspecialchars($comment['Auteur']) . "</td>";
-                echo "<td style='padding: 10px;'>" . htmlspecialchars($comment['Bericht']) . "</td>";
-                echo "</tr>";
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["Postcomment"])) {
+                $auteur = mysqli_real_escape_string($link, $_POST["auteur"]);
+                $bericht = mysqli_real_escape_string($link, $_POST["comment"]);
+
+                $query = "INSERT INTO `comments` (Auteur, Bericht) VALUES ('$auteur', '$bericht')";
+                if (mysqli_query($link, $query)) {
+                    exit();
+                } else {
+                    echo "Fout bij het toevoegen van de opmerking: " . mysqli_error($link);
+                }
             }
         ?>
-    </table>
 
-    <div class="rode-balk"></div>
+        <form action="" method="post">
+            <label class="commentlbl" for="name">Auteur:</label><br>
+            <input type="text" id="name" name="auteur"><br>
+            <label class="commentlbl" for="comment">Opmerking:</label><br>
+            <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br>
+            <input class="commentbtn" type="submit" name="Postcomment" value="Plaats opmerking">
+        </form>
+
+        <?php
+            $comments_result = mysqli_query($link, "SELECT * FROM `comments`");
+
+            if (!$comments_result) {
+                die("Query mislukt: " . mysqli_error($link));
+            }
+        ?>
+
+        <p class="commentp">Geplaatste opmerkingen:</p>
+        <table class="commenttable">
+            <tr>
+                <th style="padding: 10px;">Auteur</th>
+                <th style="padding: 10px;">Opmerking</th>
+            </tr>
+
+            <?php
+                while ($comment = mysqli_fetch_assoc($comments_result)) {
+                    echo "<tr>";
+                    echo "<td style='padding: 10px;'>" . htmlspecialchars($comment['Auteur']) . "</td>";
+                    echo "<td style='padding: 10px;'>" . htmlspecialchars($comment['Bericht']) . "</td>";
+                    echo "</tr>";
+                }
+            ?>
+        </table>
+
+        <div class="rode-balk"></div>
+    </div>
 </body>
 </html>
