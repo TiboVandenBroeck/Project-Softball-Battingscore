@@ -18,7 +18,7 @@ data.addRows([
 ]);
 
 var options = {
-    title: 'Softball Stats',
+    title: 'Batting Stats Chiel Callens',
     curveType: 'function',
     legend: { position: 'bottom' },
     series: {

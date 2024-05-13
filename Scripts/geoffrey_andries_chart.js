@@ -17,7 +17,7 @@ data.addRows([
 ]);
 
 var options = {
-    title: 'Softball Stats',
+    title: 'Batting Stats Geoffrey Andries',
     curveType: 'function',
     legend: { position: 'bottom' },
     series: {

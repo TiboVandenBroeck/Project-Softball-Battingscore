@@ -18,7 +18,7 @@ data.addRows([
 ]);
 
 var options = {
-    title: 'Softball Stats',
+    title: 'Batting Stats Kaily Blanckaert',
     curveType: 'function',
     legend: { position: 'bottom' },
     series: {

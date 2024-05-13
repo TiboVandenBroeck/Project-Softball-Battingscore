@@ -16,7 +16,7 @@ data.addRows([
 ]);
 
 var options = {
-    title: 'Softball Stats',
+    title: 'Batting Stats Ariane Couwet',
     curveType: 'function',
     legend: { position: 'bottom' },
     series: {

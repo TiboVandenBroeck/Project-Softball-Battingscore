@@ -1,3 +1,4 @@
+//maakt gebruik van google charts
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
@@ -10,6 +11,7 @@ data.addColumn('number', 'OBP');
 data.addColumn('number', 'SLG');
 data.addColumn('number', 'OPS');
 
+//rijen toevoegen aan de grafiek
 data.addRows([
     ['Heist Afterburners Thuis\n30/03/2024', 0.666, 0.666, 0.833, 1.5],
     ['Borgerhout Squirels Thuis\n01/04/2024', 0.333, 0.333, 0.333, 0.666],
@@ -17,8 +19,9 @@ data.addRows([
     ['Leuven Twins Uit\n20/04/2024', 0.25, 0.4, 0.25, 0.65],
 ]);
 
+//titel + eigenschappen lijnen
 var options = {
-    title: 'Softball Stats',
+    title: 'Batting Stats Adhemar Couwet',
     curveType: 'function',
     legend: { position: 'bottom' },
     series: {
@@ -36,6 +39,7 @@ var options = {
     }
 };
 
+//LineChart als grafiek type
 var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 chart.draw(data, options);
 }

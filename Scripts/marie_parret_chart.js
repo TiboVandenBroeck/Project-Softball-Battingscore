@@ -18,7 +18,7 @@ data.addRows([
 ]);
 
 var options = {
-    title: 'Softball Stats',
+    title: 'Batting Stats Marie Parret',
     curveType: 'function',
     legend: { position: 'bottom' },
     series: {

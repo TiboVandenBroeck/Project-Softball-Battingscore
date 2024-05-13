@@ -18,7 +18,7 @@ data.addRows([
 ]);
 
 var options = {
-    title: 'Softball Stats',
+    title: 'Batting Stats Ruben Ravestyn',
     curveType: 'function',
     legend: { position: 'bottom' },
     series: {

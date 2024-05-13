@@ -1,6 +1,39 @@
 <?php
         $link = mysqli_connect("localhost", "root", "", "project softball-battingscore") or die("Verbinding mislukt: ".mysqli_connect_error());
 
+        session_start();n
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+            if(isset($_POST["Postcomment"]) && !empty($_POST["auteur"]) && !empty($_POST["comment"])) {
+
+                $link = mysqli_connect("localhost", "gebruikersnaam", "wachtwoord", "database");
+        
+                if (!$link) {
+                    die("Verbinding mislukt: " . mysqli_connect_error());
+                }
+                //beveiliging tegen Code Injection
+                $auteur = mysqli_real_escape_string($link, $_POST["auteur"]);
+                $bericht = mysqli_real_escape_string($link, $_POST["comment"]);
+        
+                $query = "INSERT INTO `comments` (Auteur, Bericht) VALUES ('$auteur', '$bericht')";
+                if (mysqli_query($link, $query)) {
+                    header("Location: ".$_SERVER['PHP_SELF']);
+                    exit();
+                } else {
+                    echo "Fout bij het toevoegen van de opmerking: " . mysqli_error($link);
+                }
+            }
+        }
+        
+        $result = mysqli_query($link, "SELECT * FROM `comments`");
+        
+        if (!$result) {
+            die("Query mislukt: " . mysqli_error($link));
+        }
+        
+        $num_rows = mysqli_num_rows($result);
+
         if(isset($_POST['home'])){
             header("Location: start.php");
             exit;
@@ -33,7 +66,7 @@
             header("Location: logout.php");
             exit;
         }
-?>
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,8 +78,8 @@
     <script src="Scripts/script.js"></script>
 </head>
 <body>
-    <h1 class="header">Frontliners 2 Uit VS Leuven</h1>
-    
+    <h1 class="header">Frontliners 2 Thuis VS Frontliners OG</h1>
+
     <!-- surfbalk -->
     <form method="post">
         <div class="grid-container-balk">
@@ -74,10 +107,11 @@
         </div>
     </form>
 
+    <div class="wrapper">
     <table id="table">
         <tr>
-            <th class="p">Score: 30-16 en 19-17</th>
-            <th class="p">Datum: 20/04/2024</th>
+            <th class="p">Score: 15-5 en 12-3</th>
+            <th class="p">Datum: 12/03/2023</th>
         </tr>
     </table>
 
@@ -106,7 +140,7 @@
 
         <?php
 
-            $result = mysqli_query($link, "SELECT * FROM `leuven04-2024` ORDER BY `Speler`");
+            $result = mysqli_query($link, "SELECT * FROM `frontlinersog03-2023` ORDER BY `Speler`");
             while ($record = mysqli_fetch_array($result)) {
                 echo "<tr>";
                 $speler_pagina = "Speler pagina's/" . strtolower(str_replace(' ', '_', $record["Speler"])) . ".php";
@@ -133,7 +167,43 @@
             }
 
         ?>
+        
 
+    </table>
+
+    <br></br>
+
+    <form action="" method="post">
+        <label class="commentlbl" for="name">Auteur:</label><br>
+        <input type="text" id="name" name="auteur"><br>
+        <label class="commentlbl" for="comment">Opmerking:</label><br>
+        <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br>
+        <input class="commentbtn" type="submit" name="Postcomment" value="Plaats opmerking">
+    </form>
+
+    <?php
+        $comments_result = mysqli_query($link, "SELECT * FROM `comments`");
+
+        if (!$comments_result) {
+            die("Query mislukt: " . mysqli_error($link));
+        }
+    ?>
+
+    <p class="commentp">Geplaatste opmerkingen:</p>
+    <table class="commenttable">
+        <tr>
+            <th style="padding: 10px;">Auteur</th>
+            <th style="padding: 10px;">Opmerking</th>
+        </tr>
+        <?php
+            //toont de opmerkingen
+            while ($comment = mysqli_fetch_assoc($comments_result)) {
+                echo "<tr>";
+                echo "<td style='padding: 10px;'>" . htmlspecialchars($comment['Auteur']) . "</td>";
+                echo "<td style='padding: 10px;'>" . htmlspecialchars($comment['Bericht']) . "</td>";
+                echo "</tr>";
+            }
+        ?>
     </table>
 
     <div class="rode-balk"></div>

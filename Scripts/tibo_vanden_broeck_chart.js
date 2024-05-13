@@ -18,7 +18,7 @@ data.addRows([
 ]);
 
 var options = {
-    title: 'Softball Stats',
+    title: 'Batting Stats Tibo Vanden Broeck',
     curveType: 'function',
     legend: { position: 'bottom' },
     series: {
